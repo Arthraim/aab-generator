@@ -1,48 +1,30 @@
 <script>
-  import { onMount } from "svelte";
-  export let date;
-
-  onMount(async () => {
-    const res = await fetch("/api/date");
-    const newDate = await res.text();
-    date = newDate;
-  });
+  var a = "香";
+  var b = "鸡";
 </script>
 
 <main>
-  <h1>Svelte + Node.js API</h1>
-  <h2>
-    Deployed with
-    <a href="https://vercel.com/docs" target="_blank" rel="noreferrer noopener">
-      Vercel
-    </a>
-    !
-  </h2>
   <p>
-    <a
-      href="https://github.com/vercel/vercel/tree/master/examples/svelte"
-      target="_blank"
-      rel="noreferrer noopener">
-      This project
-    </a>
-    is a
-    <a href="https://svelte.dev/">Svelte</a>
-    app with three directories,
-    <code>/public</code>
-    for static assets,
-    <code>/src</code>
-    for components and content, and
-    <code>/api</code>
-    which contains a serverless
-    <a href="https://nodejs.org/en/">Node.js</a>
-    function. See
-    <a href="/api/date">
-      <code>api/date</code>
-      for the Date API with Node.js
-    </a>
-    .
+    输入一个<input type='text' on:change="{v => {a = v.target.value}}" placeholder="词" value={a} />，
+    再输入一个<input type='text' width=1 on:change="{v => {b = v.target.value}}" placeholder="物" value={b} />
+    <br>
+    得到一个<span class="result">{a||"哎"}{a||"哎"}{b||"哔"}</span>
   </p>
-  <br />
-  <h2>The date according to Node.js is:</h2>
-  <p>{date ? date : 'Loading date...'}</p>
 </main>
+
+<style>
+  p {
+    font-size: 26px;
+  }
+  input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 30px;
+    font-size: 26px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .result {
+    font-weight: 500;
+  }
+</style>
